@@ -36,5 +36,16 @@
     "left": "python -m fsaa.runtime.adapters.aios_sides left",
     "right": "python -m fsaa.runtime.adapters.aios_sides right"
   },
+  "pip_console_commands": {
+    "fsaa": "fsaa.cli.main:main - subcommands verify, validate-policy",
+    "fsaa-brainstem": "fsaa.cli.entrypoint:main - bounded supervisor (historical main_fsaa defaults)",
+    "fsaa-luna": "fsaa.cli.workspace_runtime:main_left",
+    "fsaa-aria": "fsaa.cli.workspace_runtime:main_right",
+    "fsaa-real-poc": "fsaa.experiments.real_poc_runner:main",
+    "fsaa-ab-turn-token": "fsaa.experiments.ab_harness:main",
+    "fsaa-turn-token": "fsaa.runtime.turn_token:main",
+    "fsaa-supervisor": "fsaa.control_plane.supervisor:main",
+    "fsaa-policy-guard": "fsaa.policy.guard:main"
+  },
   "status": "official_alpha_candidate"
 }
