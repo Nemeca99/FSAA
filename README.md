@@ -50,6 +50,7 @@ Default supervisor launcher (historical `main_fsaa` defaults): **`python -m fsaa
 | `fsaa-ab-turn-token` | Turn-token A/B harness |
 | `fsaa-turn-token` | CPU/GPU turn-token pilot (`fsaa.runtime.turn_token`) |
 | `fsaa-supervisor` | Full supervisor CLI (`fsaa.control_plane.supervisor`) |
+| `fsaa-policy-guard` | Policy guard smoke test (`guarded_commit` self-test) |
 
 **Rebuild rule (AI / contributors):** This repository is a **from-scratch** `fsaa` package; legacy trees on disk are **reference only**, not dependencies. See **[docs/rebuild_doctrine.md](docs/rebuild_doctrine.md)** for the non‑negotiables and a copy‑paste prompt block.
 

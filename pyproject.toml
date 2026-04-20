@@ -33,6 +33,7 @@ fsaa-real-poc = "fsaa.experiments.real_poc_runner:main"
 fsaa-ab-turn-token = "fsaa.experiments.ab_harness:main"
 fsaa-turn-token = "fsaa.runtime.turn_token:main"
 fsaa-supervisor = "fsaa.control_plane.supervisor:main"
+fsaa-policy-guard = "fsaa.policy.guard:main"
 
 [project.urls]
 Homepage = "https://github.com/Nemeca99/FSAA"

@@ -205,7 +205,8 @@ def guarded_commit(envelope: dict[str, Any]) -> ValidationResult:
         return ValidationResult(True)
 
 
-if __name__ == "__main__":
+def main() -> int:
+    """Smoke-test ``guarded_commit`` (same behavior as ``python -m fsaa.policy.guard``)."""
     example = {
         "schema_version": SCHEMA_VERSION,
         "run_id": 1,
@@ -223,3 +224,8 @@ if __name__ == "__main__":
             indent=2,
         )
     )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
