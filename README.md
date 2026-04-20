@@ -1,5 +1,7 @@
 # FSAA_v2 (Alpha)
 
+**Repository:** [github.com/Nemeca99/FSAA](https://github.com/Nemeca99/FSAA)
+
 FSAA is a **control plane / supervisor** for **AIOS runtime** workloads: policy-guarded IPC, brainstem supervision, and observability—without mutating model weights. This repository is a **standalone** Python package; it does not import legacy trees elsewhere on disk except via **`WORKSPACE_ROOT`**.
 
 ## Quickstart
