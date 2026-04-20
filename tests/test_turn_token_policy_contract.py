@@ -25,7 +25,9 @@ def test_guard_or_raise_reject_prefix(monkeypatch: pytest.MonkeyPatch) -> None:
         "guarded_commit",
         lambda _e: ValidationResult(False, "schema_invalid:missing_fields:x"),
     )
-    with pytest.raises(RuntimeError, match=r"^authority_guard_reject:schema_invalid:missing_fields:x$"):
+    with pytest.raises(
+        RuntimeError, match=r"^authority_guard_reject:schema_invalid:missing_fields:x$"
+    ):
         guard_or_raise(
             run_id=1,
             prev_hash="",

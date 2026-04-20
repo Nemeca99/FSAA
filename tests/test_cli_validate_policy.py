@@ -12,7 +12,11 @@ def test_validate_policy_exits_zero() -> None:
     cp2 = subprocess.run(
         [sys.executable, "-m", "fsaa.cli.main", "validate-policy"],
         cwd=str(root),
-        env={**__import__("os").environ, "PYTHONPATH": str(root / "src"), "WORKSPACE_ROOT": str(ws)},
+        env={
+            **__import__("os").environ,
+            "PYTHONPATH": str(root / "src"),
+            "WORKSPACE_ROOT": str(ws),
+        },
         capture_output=True,
         text=True,
     )

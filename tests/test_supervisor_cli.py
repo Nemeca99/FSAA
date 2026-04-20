@@ -9,7 +9,9 @@ from fsaa.config.paths import clear_paths_cache, get_paths
 from fsaa.control_plane.supervisor import Supervisor, parse_args
 
 
-def test_run_cli_turn_token_passes_argv_extra(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+def test_run_cli_turn_token_passes_argv_extra(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
     monkeypatch.setenv("FSAA_AUTHORITY_LOG", str(tmp_path / "a.jsonl"))
     monkeypatch.setenv("FSAA_TRANSLATION_METRICS", str(tmp_path / "m.jsonl"))
     clear_paths_cache()
@@ -58,7 +60,14 @@ def test_run_cli_turn_token_passes_argv_extra(monkeypatch: pytest.MonkeyPatch, t
     )
     assert sup.run_cli(args) == 0
     assert captured["script"] == paths.turn_token_module_py
-    assert captured["argv_extra"] == ("--max-seconds", "30", "--cpu-turn-beats", "4", "--gpu-turn-beats", "2")
+    assert captured["argv_extra"] == (
+        "--max-seconds",
+        "30",
+        "--cpu-turn-beats",
+        "4",
+        "--gpu-turn-beats",
+        "2",
+    )
 
 
 def test_run_cli_smoke(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:

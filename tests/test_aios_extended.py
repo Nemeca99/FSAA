@@ -120,4 +120,3 @@ def test_start_config() -> None:
         P.return_value = proc
         h = ad.start(cfg)
         assert h.pid == 7
-

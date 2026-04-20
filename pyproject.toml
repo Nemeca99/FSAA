@@ -67,6 +67,8 @@ ignore = ["E501"]
 [tool.mypy]
 python_version = "3.11"
 warn_unused_ignores = true
+mypy_path = "src"
+explicit_package_bases = true
 
 [[tool.mypy.overrides]]
 module = ["fsaa.contracts.*", "fsaa.config.*"]

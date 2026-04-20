@@ -15,9 +15,14 @@ repos:
       - id: mypy
         additional_dependencies: [jsonschema>=4.22]
         files: ^src/fsaa/(contracts|config)/
+        pass_filenames: false
         args:
-          - src/fsaa/contracts
-          - src/fsaa/config
+          - --config-file
+          - pyproject.toml
+          - -p
+          - fsaa.contracts
+          - -p
+          - fsaa.config
   - repo: local
     hooks:
       - id: verify-no-literals

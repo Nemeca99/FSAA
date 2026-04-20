@@ -102,4 +102,3 @@ def test_aios_sides_exports() -> None:
     m = importlib.import_module("fsaa.runtime.adapters.aios_sides")
     assert callable(m.run_luna_main)
     assert callable(m.run_aria_main)
-

@@ -540,7 +540,11 @@ class Supervisor:
                 str(max(1, int(args.turn_token_gpu_beats))),
             )
         else:
-            target = self.paths.luna_runtime_main if args.side == "left" else self.paths.aria_runtime_main
+            target = (
+                self.paths.luna_runtime_main
+                if args.side == "left"
+                else self.paths.aria_runtime_main
+            )
             argv_extra = ()
         rc = self._run_side(
             target,

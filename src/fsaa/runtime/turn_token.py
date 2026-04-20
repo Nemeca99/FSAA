@@ -250,8 +250,13 @@ def main() -> int:
     cpu_turn_beats = int(cfg.get("cpu_turn_beats", args.cpu_turn_beats) or args.cpu_turn_beats)
     gpu_turn_beats = int(cfg.get("gpu_turn_beats", args.gpu_turn_beats) or args.gpu_turn_beats)
     llm_threads = int(cfg.get("llm_threads", 4) or 4)
-    integration_enabled = bool(cfg.get("turn_token_integration_enabled", False) or args.integration_enabled)
-    experiment_id = str(cfg.get("turn_token_experiment_id", "turn_token_external_pilot") or "turn_token_external_pilot")
+    integration_enabled = bool(
+        cfg.get("turn_token_integration_enabled", False) or args.integration_enabled
+    )
+    experiment_id = str(
+        cfg.get("turn_token_experiment_id", "turn_token_external_pilot")
+        or "turn_token_external_pilot"
+    )
     if args.experiment_id and args.experiment_id != "turn_token_external_pilot":
         experiment_id = args.experiment_id
     rollback_external_pilot = bool(cfg.get("rollback_external_pilot", True))

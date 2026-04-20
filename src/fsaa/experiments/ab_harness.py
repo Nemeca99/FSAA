@@ -196,7 +196,11 @@ def slice_actions_by_index(start_idx: int, end_idx: int) -> dict:
             continue
         rows.append(obj)
     c = Counter(str(r.get("chosen_action", "unknown")) for r in rows)
-    beats = [int(r.get("beat", 0) or 0) for r in rows if isinstance(r.get("beat", 0), int) or str(r.get("beat", "")).isdigit()]
+    beats = [
+        int(r.get("beat", 0) or 0)
+        for r in rows
+        if isinstance(r.get("beat", 0), int) or str(r.get("beat", "")).isdigit()
+    ]
     beat_min = min(beats) if beats else 0
     beat_max = max(beats) if beats else 0
     beat_span = max(0, beat_max - beat_min) if beats else 0
@@ -431,4 +435,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
