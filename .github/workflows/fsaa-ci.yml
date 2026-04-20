@@ -3,15 +3,12 @@ name: FSAA CI
 
 on:
   push:
-    paths:
-      - "Continue/FSAA_v2/**"
+    branches: [main]
   pull_request:
-    paths:
-      - "Continue/FSAA_v2/**"
 
 defaults:
   run:
-    working-directory: Continue/FSAA_v2
+    working-directory: .
 
 jobs:
   verify:
@@ -24,20 +21,19 @@ jobs:
       - name: Install
         run: pip install -e ".[dev]"
       - name: Pre-commit
-        run: pre-commit run --all-files || true
-      - name: Workspace env
-        run: echo "WORKSPACE_ROOT=${GITHUB_WORKSPACE}/Continue" >> $GITHUB_ENV
+        run: pre-commit run --all-files
+      # Match tests/conftest.py: workspace = parent of repo root (sibling layout).
       - name: fsaa validate-policy
         run: fsaa validate-policy
         env:
-          WORKSPACE_ROOT: ${{ github.workspace }}/Continue
+          WORKSPACE_ROOT: ${{ github.workspace }}/..
       - name: fsaa verify
         run: fsaa verify
         env:
-          WORKSPACE_ROOT: ${{ github.workspace }}/Continue
+          WORKSPACE_ROOT: ${{ github.workspace }}/..
       - name: CycloneDX SBOM (Python)
         run: pip install cyclonedx-bom && cyclonedx-py environment -o sbom.json
       - uses: actions/upload-artifact@v4
         with:
           name: cyclonedx-sbom
-          path: Continue/FSAA_v2/sbom.json
+          path: sbom.json
