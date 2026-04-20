@@ -1,0 +1,40 @@
+{
+  "release_name": "FSAA_AIOA",
+  "stage": "alpha",
+  "version": "0.1.0-alpha",
+  "date_utc": "2026-04-20",
+  "terminology": {
+    "AIOA": "Artificial Intelligence Operating Architecture",
+    "AIOS": "User-built AI operating system/runtime",
+    "FSAA": "Fully Sovereign Autonomous Agent framework (parallel concept to AGI)"
+  },
+  "default_control_law": {
+    "mode": "bounded_single_loop",
+    "auto_default": false,
+    "loop_default": 60,
+    "beat_seconds_default": 1.0,
+    "min_actions_per_run_default": 1,
+    "behavior": "run bounded meaningful window then hard shutdown, cleanup, and log outcome"
+  },
+  "auto_mode": {
+    "enabled_with_flag": "--auto",
+    "gc_threshold_arg": "--gc-threshold-mb",
+    "restart_policy": "threshold-triggered dream consolidation, cleanup, then restart",
+    "auto_max_cycles_arg": "--auto-max-cycles"
+  },
+  "audit_artifacts": {
+    "event_log": "${WORKSPACE_ROOT}/automation/fsaa_supervisor_events.jsonl",
+    "run_state": "${WORKSPACE_ROOT}/automation/fsaa_supervisor_run_state.json",
+    "schema_guard": "fsaa.policy.guard",
+    "ipc_schema": "fsaa.resources.ipc_schema.json",
+    "authority_log": "${WORKSPACE_ROOT}/automation/authority_guard_log.jsonl",
+    "translation_metrics": "${WORKSPACE_ROOT}/automation/translation_metrics.jsonl"
+  },
+  "entrypoints": {
+    "main": "python -m fsaa.cli.entrypoint",
+    "supervisor": "python -m fsaa.control_plane.supervisor",
+    "left": "python -m fsaa.runtime.adapters.aios_sides left",
+    "right": "python -m fsaa.runtime.adapters.aios_sides right"
+  },
+  "status": "official_alpha_candidate"
+}

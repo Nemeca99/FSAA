@@ -1,0 +1,32 @@
+# See https://pre-commit.com
+# Git root may be the workspace parent (e.g. L:\); paths are relative to that root.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^Continue/FSAA_v2/
+      - id: ruff-format
+        files: ^Continue/FSAA_v2/
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [jsonschema>=4.22]
+        files: ^Continue/FSAA_v2/src/fsaa/(contracts|config)/
+        args:
+          - Continue/FSAA_v2/src/fsaa/contracts
+          - Continue/FSAA_v2/src/fsaa/config
+  - repo: local
+    hooks:
+      - id: verify-no-literals
+        name: verify-no-literals
+        entry: python Continue/FSAA_v2/scripts/verify_no_literals.py
+        language: system
+        pass_filenames: false
+      - id: verify-terminology
+        name: verify-terminology
+        entry: python Continue/FSAA_v2/scripts/verify_terminology.py
+        language: system
+        pass_filenames: false

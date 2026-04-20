@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FSAA IPC Envelope",
+  "description": "Schema-locked envelope for CPU<->GPU and scheduler control messages.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "timestamp",
+    "actor",
+    "event_type",
+    "intent",
+    "payload",
+    "prev_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "fsaa-ipc-v1"
+    },
+    "run_id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "minLength": 20
+    },
+    "actor": {
+      "type": "string",
+      "enum": [
+        "luna_left",
+        "aria_right",
+        "steel_brain",
+        "runner",
+        "scheduler",
+        "operator"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "intent",
+        "outcome",
+        "status",
+        "reject",
+        "heartbeat"
+      ]
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "runtime_boot",
+        "runtime_stop",
+        "seed_timer",
+        "turn_token_step",
+        "sandbox_write",
+        "speak",
+        "dream_cycle",
+        "sleep",
+        "wake",
+        "status_poll",
+        "operator_override"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "prev_hash": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

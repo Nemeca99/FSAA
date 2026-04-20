@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FSAA brainstem reflex policy",
+  "description": "Machine-readable defaults aligned with brainstem_supervisor.py. Operator CLI overrides these for experiments.",
+  "version": "0.1.0",
+  "bounded_mode": {
+    "auto_default": false,
+    "loop_default": 60,
+    "beat_seconds_default": 1.0,
+    "min_actions_per_run_default": 1,
+    "non_meaningful_actions": ["idle", "status_poll"],
+    "shutdown_reason_target_met": "bounded_action_target_reached",
+    "shutdown_reason_deadline": "bounded_loop_deadline"
+  },
+  "auto_mode": {
+    "enabled_flag": "--auto",
+    "gc_threshold_mb_default": 8192,
+    "gc_threshold_mb_minimum": 256,
+    "auto_max_cycles_default": 0,
+    "comment_auto_max_cycles": "0 means unlimited restart cycles until outer timeout.",
+    "outer_timeout_seconds_default": 120,
+    "dream_consolidation": {
+      "hook_command_profile": "chat_set_timer_dream_1_beats",
+      "post_dream_sleep_beats_multiplier": 2.0
+    }
+  },
+  "process_hygiene": {
+    "kill_existing_default": true,
+    "match_left_pattern": "AIOS_Luna_Aria\\\\Luna\\\\AIOS_V2\\\\main.py",
+    "match_right_pattern": "AIOS_Luna_Aria\\\\Aria\\\\AIOS_V3\\\\main_v3.py"
+  },
+  "escalation": {
+    "on_repeated_reject": "halt_operator_review",
+    "authority_guard_reject_stops_commit": true
+  }
+}

@@ -1,0 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fsaa"
+version = "0.1.0a1"
+description = "FSAA control plane: policy enforcement, supervision, observability (Alpha)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "FSAA maintainers" }]
+dependencies = [
+  "jsonschema>=4.22.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0",
+  "pytest-cov>=4.1",
+  "ruff>=0.8.0",
+  "mypy>=1.13.0",
+  "pre-commit>=4.0.0",
+  "cyclonedx-bom>=4.0",
+]
+
+[project.scripts]
+fsaa = "fsaa.cli.main:main"
+
+[project.urls]
+Homepage = "https://github.com/local/fsaa"
+
+[tool.hatch.build.targets.wheel]
+# Includes subpackages (e.g. fsaa.resources with ipc_schema.json package data).
+packages = ["src/fsaa"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/fsaa", "VERSION", "README.md", "LICENSE"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q -p no:deepeval --cov=fsaa --cov-report=term-missing --cov-fail-under=70"
+
+[tool.coverage.run]
+branch = true
+source = ["fsaa"]
+omit = [
+  "*/tests/*",
+  # Integration-scale modules: exercised manually / E2E; core logic covered via policy and adapter tests.
+  "*/fsaa/experiments/ab_harness.py",
+  "*/fsaa/runtime/turn_token.py",
+  "*/fsaa/control_plane/supervisor.py",
+]
+
+[tool.coverage.report]
+fail_under = 70
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["fsaa.contracts.*", "fsaa.config.*"]
+strict = true
