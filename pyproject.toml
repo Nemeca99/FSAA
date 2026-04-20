@@ -28,7 +28,7 @@ dev = [
 fsaa = "fsaa.cli.main:main"
 
 [project.urls]
-Homepage = "https://github.com/local/fsaa"
+Homepage = "https://github.com/Nemeca99/FSAA"
 
 [tool.hatch.build.targets.wheel]
 # Includes subpackages (e.g. fsaa.resources with ipc_schema.json package data).
