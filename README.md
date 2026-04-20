@@ -1,4 +1,4 @@
-# FSAA_v2 (Alpha)
+# FSAA (Alpha)
 
 **Repository:** [github.com/Nemeca99/FSAA](https://github.com/Nemeca99/FSAA)
 
@@ -10,7 +10,7 @@ FSAA is a **control plane / supervisor** for **AIOS runtime** workloads: policy-
 
 ```bash
 export WORKSPACE_ROOT=/path/to/workspace   # parent of automation/, chat.py, AIOS_Luna_Aria/
-cd FSAA_v2
+cd FSAA
 uv pip install -e ".[dev]"                 # or: pip install -e ".[dev]"
 fsaa validate-policy
 fsaa verify
@@ -20,7 +20,7 @@ fsaa verify
 
 ```powershell
 $env:WORKSPACE_ROOT = "L:\workspace"
-Set-Location L:\path\to\FSAA_v2
+Set-Location L:\path\to\FSAA
 # Use the same Python where you installed FSAA (venv recommended):
 & "$env:WORKSPACE_ROOT\.venv\Scripts\pip.exe" install -e ".[dev]"
 & "$env:WORKSPACE_ROOT\.venv\Scripts\fsaa.exe" validate-policy

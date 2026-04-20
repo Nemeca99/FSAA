@@ -29,6 +29,7 @@ fsaa = "fsaa.cli.main:main"
 fsaa-brainstem = "fsaa.cli.entrypoint:main"
 fsaa-luna = "fsaa.cli.workspace_runtime:main_left"
 fsaa-aria = "fsaa.cli.workspace_runtime:main_right"
+fsaa-real-poc = "fsaa.experiments.real_poc_runner:main"
 
 [project.urls]
 Homepage = "https://github.com/Nemeca99/FSAA"
@@ -52,6 +53,7 @@ omit = [
   "*/tests/*",
   # Integration-scale modules: exercised manually / E2E; core logic covered via policy and adapter tests.
   "*/fsaa/experiments/ab_harness.py",
+  "*/fsaa/experiments/real_poc_runner.py",
   "*/fsaa/runtime/turn_token.py",
   "*/fsaa/control_plane/supervisor.py",
 ]
