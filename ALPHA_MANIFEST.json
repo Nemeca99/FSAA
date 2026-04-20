@@ -1,7 +1,7 @@
 {
   "release_name": "FSAA_AIOA",
   "stage": "alpha",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0a1",
   "date_utc": "2026-04-20",
   "terminology": {
     "AIOA": "Artificial Intelligence Operating Architecture",
