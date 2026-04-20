@@ -39,9 +39,17 @@ uv pip install -e ".[dev]"
 
 After `pip install -e .`, run **`fsaa`** or **`python -m fsaa.cli.main`** with **that same interpreter** — a bare `python` on `PATH` without the package will raise `ModuleNotFoundError: No module named 'fsaa'`.
 
-Default supervisor launcher (historical `main_fsaa` defaults): **`python -m fsaa.cli.entrypoint`**.
+Default supervisor launcher (historical `main_fsaa` defaults): **`python -m fsaa.cli.entrypoint`** or **`fsaa-brainstem`**.
 
-**Rebuild rule (AI / contributors):** FSAA_v2 is a **from-scratch** package; legacy repos are **reference only**, not dependencies. See **[docs/rebuild_doctrine.md](docs/rebuild_doctrine.md)** for the non‑negotiables and a copy‑paste prompt block.
+| Command | Purpose |
+| --- | --- |
+| `fsaa` | `fsaa verify`, `fsaa validate-policy` |
+| `fsaa-brainstem` | Bounded supervisor (same defaults as root `main_fsaa.py`) |
+| `fsaa-luna` / `fsaa-aria` | Start workspace Luna/Aria mains (`WORKSPACE_ROOT`) |
+| `fsaa-real-poc` | Real PoC runner (writes under observability dir) |
+| `fsaa-ab-turn-token` | Turn-token A/B harness |
+
+**Rebuild rule (AI / contributors):** This repository is a **from-scratch** `fsaa` package; legacy trees on disk are **reference only**, not dependencies. See **[docs/rebuild_doctrine.md](docs/rebuild_doctrine.md)** for the non‑negotiables and a copy‑paste prompt block.
 
 ## Architecture
 

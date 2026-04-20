@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This runbook defines the official Alpha runtime commands and expected safety behavior (FSAA_v2 package).
+This runbook defines the official Alpha runtime commands and expected safety behavior (standalone `fsaa` package).
 
 ## Canonical terms
 
