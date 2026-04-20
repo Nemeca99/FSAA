@@ -26,6 +26,9 @@ dev = [
 
 [project.scripts]
 fsaa = "fsaa.cli.main:main"
+fsaa-brainstem = "fsaa.cli.entrypoint:main"
+fsaa-luna = "fsaa.cli.workspace_runtime:main_left"
+fsaa-aria = "fsaa.cli.workspace_runtime:main_right"
 
 [project.urls]
 Homepage = "https://github.com/Nemeca99/FSAA"
@@ -35,7 +38,7 @@ Homepage = "https://github.com/Nemeca99/FSAA"
 packages = ["src/fsaa"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/fsaa", "VERSION", "README.md", "LICENSE"]
+include = ["src/fsaa", "VERSION", "README.md", "LICENSE", "main_fsaa.py"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
