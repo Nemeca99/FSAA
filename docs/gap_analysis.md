@@ -1,8 +1,8 @@
-# Gap analysis (FSAA_v2)
+# Gap analysis (FSAA package)
 
 `verify_no_literals.py` scans `src/fsaa/**/*.py` for drive-letter path literals. New code must not introduce ad-hoc `L:` (or other drive) literals; use `WORKSPACE_ROOT`, `FsaaPaths`, and environment overrides (`FSAA_IPC_SCHEMA`, `FSAA_REFLEX_POLICY`, etc.).
 
-Historical Alpha work tracked parity between packaged resources and on-disk policy artifacts; FSAA_v2 keeps a single packaged IPC schema and reflex policy with optional overrides.
+Historical Alpha work tracked parity between packaged resources and on-disk policy artifacts; this repo keeps a single packaged IPC schema and reflex policy with optional overrides.
 
 ## Phase C guard parity (production-shaped)
 

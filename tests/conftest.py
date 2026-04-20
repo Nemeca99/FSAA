@@ -7,7 +7,7 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def _workspace_root(monkeypatch: pytest.MonkeyPatch) -> None:
-    """Workspace = parent of FSAA repo (contains automation, chat.py, FSAA, AIOS_Luna_Aria)."""
+    """Workspace = parent of this repo (e.g. Continue): automation, chat.py, AIOS_Luna_Aria; this package may be a subfolder."""
     # Import fsaa only inside the fixture so pytest-cov can enable tracing before the first
     # import of the package (avoids CoverageWarning: module-not-measured).
     from pathlib import Path

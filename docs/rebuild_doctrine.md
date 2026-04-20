@@ -1,41 +1,30 @@
-# FSAA_v2 rebuild doctrine (read before changing code)
+# FSAA package rebuild doctrine (read before changing code)
 
-This tree is **not** a strangler migration or shim layer. It is a **full parallel implementation**: behavior and contracts match the old FSAA/automation stack, but **no file is “the old file with edits.”** Legacy code is **reference only** (read to understand semantics, parity tests, JSONL shapes).
+The **`src/fsaa/`** tree is a **standalone implementation**: behavior and contracts match the workspace stack (Luna, automation, observability), but **package code must not import** from ad-hoc trees in this repo outside `fsaa.*`. Other folders here may hold research, demos, or legacy helpers; **`fsaa verify`** only checks **`src/fsaa`**, **`scripts/`**, and **`tests/`**.
 
 ## Non‑negotiables
 
 | Rule | Meaning |
 |------|--------|
-| **Standalone package** | Everything lives under this repo’s `src/fsaa/`. |
-| **No legacy imports** | No `import` from the old FSAA package tree, workspace-only automation scripts, legacy supervisor folders, or Luna/Aria shim trees. |
-| **No path cheats** | No `sys.path` hacks, no re-exports of legacy modules, no “thin wrapper” that calls old code. |
-| **Workspace only via env** | Paths outside this repo enter only through **`WORKSPACE_ROOT`** and documented env overrides (`FSAA_IPC_SCHEMA`, `FSAA_OBSERVABILITY_DIR`, …). |
-| **Preserve behavior, not text** | JSONL formats, guard verdicts, scheduler semantics, audit hashing must stay compatible; **implementation is rewritten**. |
-| **Verify gate** | `fsaa verify` green; no forbidden legacy path **strings** in-tree (see `scripts/verify_no_external_roots.py`). |
+| **Package surface** | Production logic lives under this repo’s `src/fsaa/`. |
+| **No path cheats in package** | No `sys.path` hacks or re-exports that call non-`fsaa` code from `src/fsaa`. |
+| **Workspace only via env** | Paths outside the package enter through **`WORKSPACE_ROOT`** and documented `FSAA_*` overrides. |
+| **Preserve behavior** | JSONL shapes, guard verdicts, supervisor semantics stay compatible where tested. |
+| **Verify gate** | `fsaa verify` green; `scripts/verify_no_external_roots.py` scans `src/fsaa`, `scripts`, `tests` only. |
 
-## What “reference only” means
-
-- **Do:** Open old files **side-by-side** to confirm logic, edge cases, and on-wire formats.
-- **Do:** Port algorithms and re-type paths through `FsaaPaths` / `get_paths()`.
-- **Don’t:** Copy-paste large chunks and tweak imports.
-- **Don’t:** Leave TODOs or stub returns for production paths.
-
-## Copy-paste prompt block (for Cursor / other agents)
-
-Use this **verbatim** when you start a task so the tool optimizes for a **clean twin**, not “minimal diff to legacy”:
+## Copy-paste prompt block (for agents)
 
 ---
 
-**FSAA_v2 doctrine — overrides any prior plan:**
+**FSAA doctrine — overrides any prior plan:**
 
-- **Goal:** This repo (`FSAA_v2`) is a **complete standalone rebuild** of FSAA. **Legacy trees are reference only** (read for behavior); **they are not dependencies**.
-- **Forbidden:** shims, re-exports, `sys.path` hacks, imports or string path references to any legacy sibling tree (old FSAA package, workspace automation dir, legacy supervisor sources).
-- **Allowed external context:** `WORKSPACE_ROOT` (and documented `FSAA_*` env vars) only.
-- **Deliverable:** Rewritten modules under `fsaa.*`, same observable behavior (logs, guards, supervisor semantics, audit hashes) under tests; **`fsaa verify` passes** with zero forbidden legacy path literals in `FSAA_v2`.
-- **Do not** optimize for “minimal disruption to legacy”; optimize for **correct standalone package**.
+- **Goal:** `src/fsaa` is the **canonical Python package**. Workspace trees (e.g. `AIOS_Luna_Aria`, `automation` under `WORKSPACE_ROOT`) are **runtime context**, not import targets from package code.
+- **Forbidden in `src/fsaa`:** shims to random repo folders, string path references to `Continue/...` import cheats, legacy `Steel_Brain` imports (use `fsaa.policy.guard` / `fsaa.control_plane.supervisor`).
+- **Allowed:** `WORKSPACE_ROOT` and documented `FSAA_*` env vars.
+- **Deliverable:** Modules under `fsaa.*`, tests passing, **`fsaa verify`** green.
 
 ---
 
 ## If the model drifts toward shims
 
-Say explicitly: **“That violates `docs/rebuild_doctrine.md` — no calls into legacy code; port the behavior into `fsaa.*`.”**
+Say explicitly: **“That violates `docs/rebuild_doctrine.md` — port behavior into `fsaa.*`.”**
