@@ -31,6 +31,8 @@ fsaa-luna = "fsaa.cli.workspace_runtime:main_left"
 fsaa-aria = "fsaa.cli.workspace_runtime:main_right"
 fsaa-real-poc = "fsaa.experiments.real_poc_runner:main"
 fsaa-ab-turn-token = "fsaa.experiments.ab_harness:main"
+fsaa-turn-token = "fsaa.runtime.turn_token:main"
+fsaa-supervisor = "fsaa.control_plane.supervisor:main"
 
 [project.urls]
 Homepage = "https://github.com/Nemeca99/FSAA"
